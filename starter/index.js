@@ -4,24 +4,26 @@
 
 // File system module.
 const fs = require('fs');
+const http = require('http');
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////
 //Synchronus way : 
 
 
-// const hello = "Hello World";
-// console.log(hello);
+const hello = "Hello World";
+console.log(hello);
 
 
-// const textIn = fs.readFileSync('./txt/input.txt','utf-8');
-// console.log(textIn);
+const textIn = fs.readFileSync('./txt/input.txt','utf-8');
+console.log(textIn);
 
 
 //Writing to files in node js
 
-// const textOut = `This is the information we have about the avacado: ${textIn}.\nCreated on ${Date.now()}`;
-// fs.writeFileSync('./txt/output.txt',textOut);
-// console.log('File written!');
+const textOut = `This is the information we have about the avacado: ${textIn}.\nCreated on ${Date.now()}`;
+fs.writeFileSync('./txt/output.txt',textOut);
+console.log('File written!');
 
 
 // Non-Blocking asynchronus way:
@@ -47,3 +49,15 @@ console.log("reading file.....");
 // and the async function does not get its own disk function and uses the disk keyword from the parent function.
 // and is called the lexical disk keyword.
 // where as the regular function does always gets its own disk keyword function.
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//SERVER
+
+const server = http.createServer((req,res) =>{
+        console.log(req);
+        res.end("Hello from the server!");
+});
+
+server.listen(8000,'127.0.0.1', () => {
+        console.log("Listening on port 8000");
+});
